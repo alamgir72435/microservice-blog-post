@@ -1,20 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-const CommentList = ({ postId }) => {
-  const [comments, setComments] = useState([]);
-  const fetchComments = async () => {
-    const { data } = await axios.get(
-      `http://localhost:4001/posts/${postId}/comments`
-    );
-    setComments(data);
-  };
+const CommentList = ({ comments }) => {
+  // console.log(comments);
 
-  useEffect(() => {
-    fetchComments();
-  }, []);
-
-  //   return <div></div>;
-
+  // return <div />;
   const renderdComments = comments.map((comment) => {
     return (
       <li className="list-group-item" key={comment.id}>

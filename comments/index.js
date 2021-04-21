@@ -23,12 +23,19 @@ app.post("/posts/:id/comments", async (req, res) => {
   // event
   await axios.post("http://localhost:4005/events", {
     type: "commentCreated",
-    id: commentId,
-    content,
-    postId: req.params.id,
+    data: {
+      id: commentId,
+      content,
+      postId: req.params.id,
+    },
   });
 
   res.status(201).send(comments);
+});
+
+app.post("/events", (req, res) => {
+  console.log("Received Event :", req.body.type);
+  res.send({});
 });
 
 const PORT = process.env.PORT || 4001;
